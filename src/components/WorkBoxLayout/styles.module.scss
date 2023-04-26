@@ -1,0 +1,27 @@
+.container {
+    padding: 3rem 3rem;
+}
+
+.animate {
+    animation: 0.2s fade
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+}
+
+.title {
+    text-align: center;
+}
+
+@keyframes fade {
+    0% {
+        scale: 0;
+    }
+    100% {
+        scale: 1;
+    }
+}

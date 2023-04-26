@@ -30,6 +30,11 @@
         "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
         "import/prefer-default-export": "off",
         "react/button-has-type": "off",
+        "import/no-extraneous-dependencies": "off",
+        "no-restricted-globals": "off",
+        "react/function-component-definition": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
         "import/extensions": [
             "error",
             "ignorePackages",
@@ -40,5 +45,5 @@
               "tsx": "never"
             }
          ]
-    }
+      } 
 }

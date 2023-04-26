@@ -2,8 +2,10 @@ import {
   useCallback, useEffect, useMemo, useState,
 } from 'react';
 
+const { pathname } = window.location;
+
 export const useRouter = () => {
-  const [currentUrl, setCurrentUrl] = useState(window.location.pathname);
+  const [currentUrl, setCurrentUrl] = useState(pathname);
 
   const routerNavigate = useCallback((url: string) => {
     setCurrentUrl(url);
@@ -16,7 +18,7 @@ export const useRouter = () => {
 
   useEffect(() => {
     window.addEventListener('popstate', () => {
-      setCurrentUrl(window.location.pathname);
+      setCurrentUrl(document.location.pathname);
     });
   }, []);
 
