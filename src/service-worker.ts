@@ -1,5 +1,5 @@
 import { registerRoute } from 'workbox-routing';
-import { CacheFirst } from 'workbox-strategies';
+import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
 // import { precacheAndRoute } from 'workbox-precaching';
@@ -10,7 +10,7 @@ import { ExpirationPlugin } from 'workbox-expiration';
 registerRoute(
   ({ request }) => request.destination === 'image',
   new CacheFirst({
-    cacheName: 'assets',
+    cacheName: 'images',
     plugins: [
       new CacheableResponsePlugin({
         statuses: [0, 200],
@@ -18,6 +18,18 @@ registerRoute(
       new ExpirationPlugin({
         maxEntries: 60,
         maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+      }),
+    ],
+  }),
+);
+
+registerRoute(
+  ({ request }) => request.destination === 'script' || request.destination === 'style',
+  new StaleWhileRevalidate({
+    cacheName: 'sripts-styles',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
       }),
     ],
   }),

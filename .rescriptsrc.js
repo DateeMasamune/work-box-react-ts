@@ -17,5 +17,5 @@ module.exports = config => {
   )
   return appended
 }
-// добавить в веб пак workbox и экспорт сервис воркера в дист
+
 //https://github.com/harrysolovay/rescripts/blob/master/packages/examples/editing-webpack-plugins/.rescriptsrc.js
