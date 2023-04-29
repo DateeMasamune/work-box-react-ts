@@ -2,15 +2,14 @@ import React, { createContext } from 'react';
 import { WorkBoxPreCacheImage } from '../components/WorkBoxPreCacheImage';
 import { useRouter } from './useRouter';
 import {
-  WORK_BOX_PRECACHE_IMAGE, WORK_BOX_PRECACHE_REQUESTS, BACKGROUND_SYNC, INDEX_DB,
+  WORK_BOX_PRECACHE_IMAGE, WORK_BOX_PRECACHE_REQUESTS, BACKGROUND_SYNC, INDEX_DB, OFFLINE,
 } from './paths';
 import { WorkBoxLayout } from '../components/WorkBoxLayout';
-import {
-  TITLE_PAGE_NOT_FOUND,
-} from '../components/constants';
 import { WorkBoxPreCacheRequests } from '../components/WorkBoxPreCacheRequests';
 import { BackgroundSync } from '../components/BackgroundSync';
 import { IndexDB } from '../components/IndexDB';
+import { Offline } from '../components/Offline';
+import { TITLE_PAGE_NOT_FOUND } from '../constants';
 
 interface IRouterContext {
     // eslint-disable-next-line no-unused-vars
@@ -36,6 +35,9 @@ export function RouterContextProvider() {
 
       case INDEX_DB:
         return <IndexDB />;
+
+      case OFFLINE:
+        return <Offline />;
 
       default:
         return (

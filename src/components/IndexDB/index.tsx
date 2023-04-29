@@ -1,6 +1,6 @@
 import React from 'react';
 import { WorkBoxLayout } from '../WorkBoxLayout';
-import { TITLE_INDEX_DB } from '../constants';
+import { TITLE_INDEX_DB } from '../../constants';
 
 export function IndexDB() {
   return (

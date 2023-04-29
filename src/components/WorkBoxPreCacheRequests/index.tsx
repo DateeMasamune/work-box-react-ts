@@ -1,5 +1,5 @@
 import React from 'react';
-import { TITLE_WORK_BOX_PRECACHE_REQUESTS } from '../constants';
+import { TITLE_WORK_BOX_PRECACHE_REQUESTS } from '../../constants';
 import { WorkBoxLayout } from '../WorkBoxLayout';
 
 export function WorkBoxPreCacheRequests() {

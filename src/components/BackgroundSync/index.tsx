@@ -1,5 +1,5 @@
 import React from 'react';
-import { TITLE_BACKGROUND_SYNC } from '../constants';
+import { TITLE_BACKGROUND_SYNC } from '../../constants';
 import { WorkBoxLayout } from '../WorkBoxLayout';
 
 export function BackgroundSync() {

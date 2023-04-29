@@ -13,7 +13,7 @@ import {
   TITLE_WORK_BOX_PRECACHE_REQUESTS,
   TITLE_BACKGROUND_SYNC,
   TITLE_INDEX_DB,
-} from '../constants';
+} from '../../constants';
 
 import styles from './styles.module.scss';
 

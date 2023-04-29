@@ -1,6 +1,6 @@
 import React from 'react';
 import { WorkBoxLayout } from '../WorkBoxLayout';
-import { TITLE_WORK_BOX_PRECACHE_IMAGE } from '../constants';
+import { TITLE_WORK_BOX_PRECACHE_IMAGE } from '../../constants';
 
 import styles from './styles.module.scss';
 
