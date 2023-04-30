@@ -4,6 +4,7 @@ import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { setCacheNameDetails } from 'workbox-core';
 import { precacheAndRoute } from 'workbox-precaching';
+import { Queue } from 'workbox-background-sync';
 import {
   OFFLINE,
   INDEX_DB,
@@ -13,6 +14,8 @@ import {
 } from './Router/paths';
 // @ts-ignore
 // self.__WB_MANIFEST
+
+const queue = new Queue('justiceQueue');
 
 setCacheNameDetails({
   prefix: 'justice',
@@ -55,7 +58,7 @@ registerRoute(
       }),
       new ExpirationPlugin({
         maxEntries: 60,
-        maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+        maxAgeSeconds: 1 * 60 * 60, // 1час
       }),
     ],
   }),
@@ -68,6 +71,10 @@ registerRoute(
     plugins: [
       new CacheableResponsePlugin({
         statuses: [200],
+      }),
+      new ExpirationPlugin({
+        // ограничиваем время хранения ресурсов в кеше
+        maxAgeSeconds: 1 * 60 * 60, // 1час
       }),
     ],
   }),
@@ -84,9 +91,24 @@ registerRoute(
       new CacheableResponsePlugin({
         statuses: [200],
       }),
+      new ExpirationPlugin({
+        // ограничиваем время хранения ресурсов в кеше
+        maxAgeSeconds: 1 * 60 * 60, // 1час
+      }),
     ],
   }),
 );
+
+self.addEventListener('fetch', async (event) => {
+  // Клонируем запрос для безопасного чтения
+  // при добавлении в очередь
+  // @ts-ignore
+  const promiseChain = fetch(event.request.clone())
+  // @ts-ignore
+    .catch(async () => queue.pushRequest({ request: event.request }));
+  // @ts-ignore
+  event.waitUntil(promiseChain);
+});
 
 // self.addEventListener('install', () => {
 //   console.log('==========>install');

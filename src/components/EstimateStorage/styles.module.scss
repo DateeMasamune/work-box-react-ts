@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    animation: 0.2s slideDown
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-120px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
