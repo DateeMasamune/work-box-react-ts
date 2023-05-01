@@ -4,6 +4,7 @@ import { TITLE_BACKGROUND_SYNC } from '../../constants';
 import { WorkBoxLayout } from '../WorkBoxLayout';
 
 import styles from './styles.module.scss';
+import { ListItems } from '../ListItems';
 
 interface Post {
   title: string
@@ -29,15 +30,9 @@ export function BackgroundSync() {
     setPost(null);
   };
 
-  const getPosts = async () => {
-    const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5');
-    console.log('==========>posts', data);
-  };
-
   useEffect(() => {
-    getPosts();
     navigator.serviceWorker.addEventListener('message', (event) => {
-      console.log(event.data.msg, event.data.url);
+      console.log('@@@@@@@@@@@message', event);
     });
   }, []);
 
@@ -47,19 +42,7 @@ export function BackgroundSync() {
         <button onClick={() => setPost(generatePost())}>
           Создать пост
         </button>
-        {post && (
-        <div>
-          <div>
-            {`title : ${post?.title}`}
-          </div>
-          <div>
-            {`body : ${post?.body}`}
-          </div>
-          <div>
-            {`userId : ${post?.userId}`}
-          </div>
-        </div>
-        )}
+        {post && <ListItems element={post} />}
         <button onClick={sendPost}>
           Отправить пост
         </button>

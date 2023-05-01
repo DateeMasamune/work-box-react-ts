@@ -110,12 +110,41 @@ self.addEventListener('fetch', async (event) => {
   event.waitUntil(promiseChain);
 });
 
-// self.addEventListener('install', () => {
-//   console.log('==========>install');
-// });
+// Логика для обмена сообщениями между сервис воркером и фронтом
 
-// self.addEventListener('activate', () => {
-//   console.log('==========>activate');
-// });
+// async function postSuccessMessage(response) {
+//   // @ts-ignore
+//   const clients = await self.clients.matchAll();
+//   // @ts-ignore
+//   for (const client of clients) {
+//     // Customize this message format as you see fit.
+//     client.postMessage({
+//       type: 'REPLAY_SUCCESS',
+//       url: response,
+//     });
+//   }
+// }
+
+// async function onSync() {
+//   let entry;
+//   // @ts-ignore
+//   while (entry = await this.shiftRequest()) {
+//     try {
+//       // @ts-ignore
+//       const response = await fetch(entry.request);
+//       const clone = JSON.parse(JSON.stringify(response));
+//       // Do custom *INNER* processing (eg decrease my applicative counter by one)
+//       postSuccessMessage(clone);
+//       console.log('Extra feature for request', entry.request.url);
+//     } catch (error) {
+//       // @ts-ignore
+//       await this.unshiftRequest(entry);
+//       throw error;
+//     }
+//   }
+//   console.log('Replay complete!');
+// }
+
+// Логика для обмена сообщениями между сервис воркером и фронтом
 
 export {};
