@@ -2,10 +2,10 @@ import React, { createContext } from 'react';
 import { WorkBoxPreCacheImage } from '../components/WorkBoxPreCacheImage';
 import { useRouter } from './useRouter';
 import {
-  WORK_BOX_PRECACHE_IMAGE, WORK_BOX_PRECACHE_REQUESTS, BACKGROUND_SYNC, INDEX_DB, OFFLINE,
+  WORK_BOX_PRECACHE_IMAGE, THREAD, BACKGROUND_SYNC, INDEX_DB, OFFLINE,
 } from './paths';
 import { WorkBoxLayout } from '../components/WorkBoxLayout';
-import { WorkBoxPreCacheRequests } from '../components/WorkBoxPreCacheRequests';
+import { Thread } from '../components/Thread';
 import { BackgroundSync } from '../components/BackgroundSync';
 import { IndexDB } from '../components/IndexDB';
 import { Offline } from '../components/Offline';
@@ -27,8 +27,8 @@ export function RouterContextProvider() {
       case '/':
         return <WorkBoxPreCacheImage />;
 
-      case WORK_BOX_PRECACHE_REQUESTS:
-        return <WorkBoxPreCacheRequests />;
+      case THREAD:
+        return <Thread />;
 
       case BACKGROUND_SYNC:
         return <BackgroundSync />;

@@ -10,7 +10,7 @@ import {
   INDEX_DB,
   BACKGROUND_SYNC,
   WORK_BOX_PRECACHE_IMAGE,
-  WORK_BOX_PRECACHE_REQUESTS,
+  THREAD,
 } from './Router/paths';
 // @ts-ignore
 // self.__WB_MANIFEST
@@ -37,7 +37,7 @@ const preCacheUrls = [
     revision: '3',
   },
   {
-    url: WORK_BOX_PRECACHE_REQUESTS,
+    url: THREAD,
     revision: '4',
   },
   {

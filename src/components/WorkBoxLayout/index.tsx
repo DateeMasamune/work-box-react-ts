@@ -5,12 +5,12 @@ import clsx from 'clsx';
 import { RouterContext } from '../../Router';
 import {
   WORK_BOX_PRECACHE_IMAGE,
-  WORK_BOX_PRECACHE_REQUESTS,
+  THREAD,
   BACKGROUND_SYNC, INDEX_DB,
 } from '../../Router/paths';
 import {
   TITLE_WORK_BOX_PRECACHE_IMAGE,
-  TITLE_WORK_BOX_PRECACHE_REQUESTS,
+  TITLE_THREAD,
   TITLE_BACKGROUND_SYNC,
   TITLE_INDEX_DB,
 } from '../../constants';
@@ -29,8 +29,8 @@ const links = [
     title: TITLE_WORK_BOX_PRECACHE_IMAGE,
   },
   {
-    link: WORK_BOX_PRECACHE_REQUESTS,
-    title: TITLE_WORK_BOX_PRECACHE_REQUESTS,
+    link: THREAD,
+    title: TITLE_THREAD,
   },
   {
     link: BACKGROUND_SYNC,
