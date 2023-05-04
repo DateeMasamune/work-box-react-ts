@@ -20,6 +20,7 @@ const generatePost = () => ({
 
 export function BackgroundSync() {
   const [post, setPost] = useState<Post | null>(null);
+  const [posts, setPosts] = useState([]);
 
   const sendPost = async () => {
     await axios.post('https://jsonplaceholder.typicode.com/posts', post, {
@@ -30,10 +31,16 @@ export function BackgroundSync() {
     setPost(null);
   };
 
+  const getPosts = async () => {
+    const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=3');
+    setPosts(data);
+  };
+
   useEffect(() => {
     navigator.serviceWorker.addEventListener('message', (event) => {
       console.log('@@@@@@@@@@@message', event);
     });
+    getPosts();
   }, []);
 
   return (
@@ -46,6 +53,11 @@ export function BackgroundSync() {
         <button onClick={sendPost}>
           Отправить пост
         </button>
+        {!!posts?.length && posts.map((element) => (
+          <div>
+            <ListItems element={element} />
+          </div>
+        ))}
       </div>
     </WorkBoxLayout>
   );

@@ -46,6 +46,8 @@ const preCacheUrls = [
   },
 ];
 
+const resolveUrls = ['https://jsonplaceholder.typicode.com/posts?_limit=3'];
+
 precacheAndRoute(preCacheUrls);
 
 registerRoute(
@@ -65,7 +67,7 @@ registerRoute(
 );
 
 registerRoute(
-  ({ request }) => request.destination === 'script' || request.destination === 'style', // кушируем скрипты и стили
+  ({ request }) => request.destination === 'script' || request.destination === 'style', // кешируем скрипты и стили
   new StaleWhileRevalidate({
     cacheName: 'sripts-styles',
     plugins: [
@@ -88,6 +90,22 @@ registerRoute(
     cacheName: 'pages',
     plugins: [
       // кэшируем только результаты со статусом 200
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        // ограничиваем время хранения ресурсов в кеше
+        maxAgeSeconds: 1 * 60 * 60, // 1час
+      }),
+    ],
+  }),
+);
+
+registerRoute(
+  ({ url }) => resolveUrls.some((resolve) => resolve.includes(url.href)), // кешируем запросы
+  new StaleWhileRevalidate({
+    cacheName: 'resolve-requests',
+    plugins: [
       new CacheableResponsePlugin({
         statuses: [200],
       }),
