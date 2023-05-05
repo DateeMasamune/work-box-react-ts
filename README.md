@@ -5,7 +5,7 @@
   npm install
 ```
 ```bash
-  npm start :rocket:
+  npm start
 ```
 ## Description
 This project is about introducing workbox into react and its settings, as well as index db and web workers :wink:
