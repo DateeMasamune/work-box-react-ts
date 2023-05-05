@@ -12,7 +12,7 @@ export const useWebWorker = () => {
       setResult(event.data);
       worker.terminate();
     };
-  }, []);
+  }, [setResult]);
 
   return { result, startComputed };
 };

@@ -10,7 +10,7 @@ export const useRouter = () => {
   const routerNavigate = useCallback((url: string) => {
     setCurrentUrl(url);
     window.history.pushState({}, '', url);
-  }, []);
+  }, [setCurrentUrl]);
 
   const routerContextValue = useMemo(() => ({
     routerNavigate,
