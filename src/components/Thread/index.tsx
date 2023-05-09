@@ -7,10 +7,18 @@ import styles from './styles.module.scss';
 
 const otherComputed = () => {
   console.log('==========>start...');
+  const start = Date.now();
   const sum = Math.floor(Array.from({ length: 30_000_000 })
     .map(() => Math.random() * 5)
     .reduce((prev, curr) => prev + curr));
-  console.log('==========>sum', sum);
+  const finish = (Date.now() - start);
+
+  console.log('==========>sum==============', { sum, finish });
+
+  return {
+    sum,
+    finish,
+  };
 };
 
 export function Thread() {

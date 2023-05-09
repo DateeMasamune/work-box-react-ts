@@ -17,23 +17,35 @@ export function IndexDB() {
   const [todoList, setTodoList] = useState<Todo[]>([]);
 
   const saveInIndexDB = async () => {
-    if (todoElement) {
-      await db.todo.put(todoElement);
-      setTodoElement(null);
-      setTodoList((prevState) => (
-        [...prevState.filter(({ id }) => id !== todoElement.id), todoElement]
-      ));
+    try {
+      if (todoElement) {
+        await db.todo.put(todoElement);
+        setTodoElement(null);
+        setTodoList((prevState) => (
+          [...prevState.filter(({ id }) => id !== todoElement.id), todoElement]
+        ));
+      }
+    } catch (error) {
+      console.log('==========>error saveInIndexDB', error);
     }
   };
 
   const getTodoListFromIndexDB = async () => {
-    const todoAllList = await db.table('todo').toArray();
-    setTodoList(todoAllList);
+    try {
+      const todoAllList = await db.table('todo').toArray();
+      setTodoList(todoAllList);
+    } catch (error) {
+      console.log('==========>error getTodoListFromIndexDB', error);
+    }
   };
 
   const clearTodoListFromIndexDB = async () => {
-    await db.todo.clear();
-    setTodoList([]);
+    try {
+      await db.todo.clear();
+      setTodoList([]);
+    } catch (error) {
+      console.log('==========>error clearTodoListFromIndexDB', error);
+    }
   };
 
   useEffect(() => {
