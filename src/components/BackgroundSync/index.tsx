@@ -12,15 +12,21 @@ interface Post {
   userId: number
 }
 
+interface Posts extends Post {
+  id: number
+}
+
 const generatePost = () => ({
   title: Math.random().toString(36).substring(2, 7),
   body: Math.random().toString(36).substring(2, 7),
   userId: Math.round(Math.random() * 100),
 });
 
+const LIMIT = 3;
+
 export function BackgroundSync() {
   const [post, setPost] = useState<Post | null>(null);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Posts[] | null>(null);
 
   const sendPost = async () => {
     await axios.post('https://jsonplaceholder.typicode.com/posts', post, {
@@ -32,7 +38,7 @@ export function BackgroundSync() {
   };
 
   const getPosts = async () => {
-    const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=3');
+    const { data } = await axios.get(`https://jsonplaceholder.typicode.com/posts?_limit=${LIMIT}`);
     setPosts(data);
   };
 
@@ -53,8 +59,8 @@ export function BackgroundSync() {
         <button onClick={sendPost}>
           Отправить пост
         </button>
-        {!!posts?.length && posts.map((element) => (
-          <div>
+        {posts && posts.map((element) => (
+          <div key={element.title}>
             <ListItems element={element} />
           </div>
         ))}
