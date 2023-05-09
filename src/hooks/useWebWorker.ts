@@ -12,6 +12,10 @@ export const useWebWorker = () => {
       setResult(event.data);
       worker.terminate();
     };
+
+    worker.onerror = (error) => {
+      console.log('==========>@@@@@@@@@@@@@@@@@event webWorker error', error.message);
+    };
   }, [setResult]);
 
   return { result, startComputed };
