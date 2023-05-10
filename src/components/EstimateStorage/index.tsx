@@ -10,10 +10,10 @@ interface IProp {
 export const EstimateStorage:FC<IProp> = ({ quota, usage }) => (
   <div className={styles.container}>
     <span>
-      {`Свободная память кеша: ${quota} байт`}
+      {`Свободная память кеша: ${new Intl.NumberFormat().format(quota)} байт`}
     </span>
     <span>
-      {`Использовано памяти кеша: ${usage} байт`}
+      {`Использовано памяти кеша: ${new Intl.NumberFormat().format(usage)} байт`}
     </span>
   </div>
 );

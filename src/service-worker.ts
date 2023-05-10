@@ -20,13 +20,13 @@ const queue = new Queue('justiceQueue');
 setCacheNameDetails({
   prefix: 'justice',
   suffix: 'v1',
-  precache: 'justice-precache',
+  precache: 'precache',
 });
 
 const preCacheUrls = [
   {
     url: INDEX_DB,
-    revision: '1',
+    revision: '1', // Версионирование позволяет рассматриваемому модулю определять необходимость обновления кешированного ресурса.
   },
   {
     url: BACKGROUND_SYNC,
@@ -125,6 +125,7 @@ self.addEventListener('fetch', async (event) => {
   // @ts-ignore
     .catch(async () => queue.pushRequest({ request: event.request }));
   // @ts-ignore
+  // сообщает браузеру, что работа продолжается до тех пор, пока обещание не будет выполнено
   event.waitUntil(promiseChain);
 });
 
